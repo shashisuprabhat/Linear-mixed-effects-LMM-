@@ -5,10 +5,15 @@ Analyses we can do in RStudio
 **Step 1: Load the Data in R**
 ---
 Use this code to load and inspect the Excel file:
-# Bash commands
-curl -LO https://example.com/script.sh
-chmod +x script.sh
-./script.sh
+<pre> ```library(readxl)
+library(dplyr)
 
+# Load the Excel file (replace with your actual local path if needed)
+df <- read_excel("LMM DF.xlsx")
+
+# Preview structure and first rows
+str(df)
+head(df)
+ ``` </pre>
 
 
