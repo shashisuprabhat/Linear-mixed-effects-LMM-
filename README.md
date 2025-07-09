@@ -14,6 +14,6 @@ df <- read_excel("LMM DF.xlsx")
 # Preview structure and first rows
 str(df)
 head(df)
- ``` </pre>
+```</pre>
 
 
