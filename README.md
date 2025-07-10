@@ -28,4 +28,29 @@ Possibly more: vehicle model, time, weather, driver ID, etc
 ```
 colnames(df)
 ```
+**🔍 Step 3: Key Analyses You Can Do in RStudio**
+---
+1. Descriptive Statistics
+Understand the general behavior of RDMS:
+```
+summary(df$`RDMS Speed`)
+table(df$`Reason for RDMS Warning`)
+```
+**2. Plotting**
+Visual exploration of how RDMS behaves.
+---
+a. Boxplot of Speed by Warning Reason
+```
+library(ggplot2)
 
+ggplot(df, aes(x = `Reason for RDMS Warning`, y = `RDMS Speed`)) +
+  geom_boxplot(fill = "skyblue") +
+  theme_minimal() +
+  labs(title = "RDMS Speed by Warning Reason")
+```
+b. Histogram of RDMS Speed
+```
+ggplot(df, aes(x = `RDMS Speed`)) +
+  geom_histogram(binwidth = 5, fill = "darkgreen", color = "white") +
+  theme_minimal()
+```
