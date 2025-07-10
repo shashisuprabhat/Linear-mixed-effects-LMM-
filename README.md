@@ -171,3 +171,10 @@ df$Hour <- lubridate::hour(df$`Time stamp of warning`)
 model1 <- lm(`RDMS Speed` ~ `Reason for RDMS warning`, data = df)
 summary(model1)
 ```
+**Example 2: RDMS Speed ~ Reason + Hour of Day**
+```
+model2 <- lm(`RDMS Speed` ~ `Reason for RDMS warning` + Hour, data = df)
+summary(model2)
+```
+
+
