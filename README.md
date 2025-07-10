@@ -134,8 +134,9 @@ ggplot(df, aes(x = `Time stamp of warning`, y = `RDMS Speed`, color = `Reason fo
 ```
 ***7. Driver/Vehicle Behavior Comparison***
 If you have a Driver ID or Vehicle ID:
+Driver ID==Sample No. (as per our data)
 ```
 df %>%
-  group_by(`Driver ID`) %>%
+  group_by(`Sample No.`) %>%
   summarise(MeanSpeed = mean(`RDMS Speed`, na.rm = TRUE))
 ```
