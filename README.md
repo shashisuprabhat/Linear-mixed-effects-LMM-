@@ -140,3 +140,34 @@ df %>%
   group_by(`Sample No.`) %>%
   summarise(MeanSpeed = mean(`RDMS Speed`, na.rm = TRUE))
 ```
+
+
+
+**Goal of Linear Regression**
+A linear regression helps you analyze how one or more independent variables predict a dependent variable — in this case, likely:
+
+Dependent variable (Y): RDMS Speed
+
+Independent variables (X): e.g.,
+
+Reason for RDMS Warning (categorical)
+
+Time of Day, Driver ID, etc. (if available)
+
+Or even just run a simple linear regression with one numeric predictor
+---
+Step 1: Prepare Data
+First, make sure categorical variables are treated as factors, and timestamp is parsed correctly if needed.
+```
+# Treat Reason as a factor (categorical variable)
+df$`Reason for RDMS warning` <- as.factor(df$`Reason for RDMS warning`)
+
+# Optional: extract hour if you want to use it
+df$Hour <- lubridate::hour(df$`Time stamp of warning`)
+```
+**Step 2: Run Linear Regression**
+✅ Example 1: RDMS Speed ~ Reason for Warning
+```
+model1 <- lm(`RDMS Speed` ~ `Reason for RDMS Warning`, data = df)
+summary(model1)
+```
