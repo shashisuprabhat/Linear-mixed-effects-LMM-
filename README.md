@@ -34,7 +34,7 @@ colnames(df)
 Understand the general behavior of RDMS:
 ```
 summary(df$`RDMS Speed`)
-table(df$`Reason for RDMS Warning`)
+table(df$`Reason for RDMS warning`)
 ```
 **2. Plotting**
 Visual exploration of how RDMS behaves.
@@ -43,7 +43,7 @@ a. Boxplot of Speed by Warning Reason
 ```
 library(ggplot2)
 
-ggplot(df, aes(x = `Reason for RDMS Warning`, y = `RDMS Speed`)) +
+ggplot(df, aes(x = `Reason for RDMS warning`, y = `RDMS Speed`)) +
   geom_boxplot(fill = "skyblue") +
   theme_minimal() +
   labs(title = "RDMS Speed by Warning Reason")
