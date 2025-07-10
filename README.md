@@ -58,7 +58,7 @@ ggplot(df, aes(x = `RDMS Speed`)) +
 How does average RDMS speed vary by reason?
 ```
 df %>%
-  group_by(`Reason for RDMS Warning`) %>%
+  group_by(`Reason for RDMS warning`) %>%
   summarise(
     Mean_Speed = mean(`RDMS Speed`, na.rm = TRUE),
     Count = n()
@@ -68,11 +68,11 @@ df %>%
 Check if RDMS Speed significantly varies between different reasons:
 ```
 # If assumptions of normality met
-anova_result <- aov(`RDMS Speed` ~ `Reason for RDMS Warning`, data = df)
+anova_result <- aov(`RDMS Speed` ~ `Reason for RDMS warning`, data = df)
 summary(anova_result)
 
 # If data not normally distributed
-kruskal.test(`RDMS Speed` ~ `Reason for RDMS Warning`, data = df)
+kruskal.test(`RDMS Speed` ~ `Reason for RDMS warning`, data = df)
 ```
 **5. Outlier Detection**
 Check for speed outliers at time of RDMS warnings:
@@ -85,7 +85,7 @@ If you have a time column, explore RDMS warnings over time:
 # Assuming column 'Timestamp' exists
 df$Timestamp <- as.POSIXct(df$Timestamp)
 
-ggplot(df, aes(x = Timestamp, y = `RDMS Speed`, color = `Reason for RDMS Warning`)) +
+ggplot(df, aes(x = Timestamp, y = `RDMS Speed`, color = `Reason for RDMS warning`)) +
   geom_point() +
   theme_minimal()
 ```
