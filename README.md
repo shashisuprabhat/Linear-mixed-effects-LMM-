@@ -107,12 +107,30 @@ print(outliers)
 ***6. Time Series or Sequential Pattern (if timestamp exists)***
 If you have a time column, explore RDMS warnings over time:
 ```
-# Assuming column 'Timestamp' exists
-df$Timestamp <- as.POSIXct(df$Timestamp)
+library(readxl)
+library(ggplot2)
+library(dplyr)
 
-ggplot(df, aes(x = Timestamp, y = `RDMS Speed`, color = `Reason for RDMS warning`)) +
-  geom_point() +
-  theme_minimal()
+# Load Excel file
+df <- read_excel("LMM DF.xlsx")
+
+# Convert "Time stamp of warning" to POSIXct datetime format
+df$`Time stamp of warning` <- as.POSIXct(df$`Time stamp of warning`, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
+
+# Sort by time (optional)
+df <- df %>% arrange(`Time stamp of warning`)
+
+# Plot: RDMS Speed over time, colored by Reason
+ggplot(df, aes(x = `Time stamp of warning`, y = `RDMS Speed`, color = `Reason for RDMS warning`)) +
+  geom_point(alpha = 0.7) +
+  theme_minimal() +
+  labs(
+    title = "RDMS Speed Over Time by Warning Reason",
+    x = "Time of Warning",
+    y = "RDMS Speed",
+    color = "Reason"
+  )
+
 ```
 ***7. Driver/Vehicle Behavior Comparison***
 If you have a Driver ID or Vehicle ID:
