@@ -168,6 +168,6 @@ df$Hour <- lubridate::hour(df$`Time stamp of warning`)
 **Step 2: Run Linear Regression**
 ✅ Example 1: RDMS Speed ~ Reason for Warning
 ```
-model1 <- lm(`RDMS Speed` ~ `Reason for RDMS Warning`, data = df)
+model1 <- lm(`RDMS Speed` ~ `Reason for RDMS warning`, data = df)
 summary(model1)
 ```
