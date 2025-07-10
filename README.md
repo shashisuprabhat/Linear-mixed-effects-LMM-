@@ -16,5 +16,16 @@ df <- read_excel("LMM DF.xlsx")
 str(df)
 head(df)
 ```
+**Step 2: Understand the Columns**
+---
+Let’s assume your dataset includes columns like:
 
+RDMS Speed: Speed of the vehicle when RDMS warning triggered
+
+Reason for RDMS Warning: Categorical variable like "lane departure", "sensor error", etc.
+
+Possibly more: vehicle model, time, weather, driver ID, etc
+'''
+colnames(df)
+'''
 
