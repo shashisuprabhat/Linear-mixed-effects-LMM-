@@ -157,7 +157,7 @@ Time of Day, Driver ID, etc. (if available)
 
 ---
 Step 1: Prepare Data
-First, make sure categorical variables are treated as factors, and timestamp is parsed correctly if needed.
+First, make sure categorical variables are treated as factors, and timestamp is parsed correctly if needed.(paste 2nd code after this code and enter)
 ```
 # Treat Reason as a factor (categorical variable)
 df$`Reason for RDMS warning` <- as.factor(df$`Reason for RDMS warning`)
