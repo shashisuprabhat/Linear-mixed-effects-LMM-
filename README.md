@@ -79,6 +79,31 @@ Check for speed outliers at time of RDMS warnings:
 ```
 boxplot(df$`RDMS Speed`, main = "Outliers in RDMS Speed")
 ```
+ **Other things we can do**
+ If you want to identify outliers based on RDMS Speed using your own defined thresholds (i.e., Speed < 65 or Speed > 120), here’s how to:
+Flag those values as outliers
+Count how many there are
+See their exact speeds and reasons
+```
+library(readxl)
+library(dplyr)
+
+# Load the Excel file (adjust the path if needed)
+df <- read_excel("LMM DF.xlsx")
+
+# Define outlier conditions
+outliers <- df %>%
+  filter(`RDMS Speed` < 65 | `RDMS Speed` > 120) %>%
+  select(`RDMS Speed`, `Reason for RDMS warning`)
+
+# Number of outliers
+num_outliers <- nrow(outliers)
+
+# Print number and the rows with outliers
+cat("📌 Number of outliers in RDMS Speed:", num_outliers, "\n\n")
+print(outliers)
+```
+
 ***6. Time Series or Sequential Pattern (if timestamp exists)***
 If you have a time column, explore RDMS warnings over time:
 ```
