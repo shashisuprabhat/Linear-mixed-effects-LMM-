@@ -144,6 +144,7 @@ df %>%
 
 
 **Goal of Linear Regression**
+---
 A linear regression helps you analyze how one or more independent variables predict a dependent variable — in this case, likely:
 
 Dependent variable (Y): RDMS Speed
@@ -154,7 +155,6 @@ Reason for RDMS Warning (categorical)
 
 Time of Day, Driver ID, etc. (if available)
 
-Or even just run a simple linear regression with one numeric predictor
 ---
 Step 1: Prepare Data
 First, make sure categorical variables are treated as factors, and timestamp is parsed correctly if needed.
