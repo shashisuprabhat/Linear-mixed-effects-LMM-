@@ -176,5 +176,73 @@ summary(model1)
 model2 <- lm(`RDMS Speed` ~ `Reason for RDMS warning` + Hour, data = df)
 summary(model2)
 ```
+**linear relationship between RDMS Speed and RDMS Warning Time** 
+---
+Plot the data with a regression line.
+```
+library(readxl)
+library(ggplot2)
+library(lubridate)
+library(dplyr)
+
+# Load data
+df <- read_excel("LMM DF.xlsx")
+
+# Convert time column to POSIXct
+df$`Time stamp of warning` <- as.POSIXct(df$`Time stamp of warning`, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
+
+# Create numeric time (e.g., seconds since first warning)
+df <- df %>%
+  arrange(`Time stamp of warning`) %>%
+  mutate(
+    Time_Seconds = as.numeric(difftime(`Time stamp of warning`, min(`Time stamp of warning`), units = "secs"))
+  )
+
+# Plot linear relationship
+ggplot(df, aes(x = Time_Seconds, y = `RDMS Speed`)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, color = "red", linewidth = 1.2) +
+  theme_minimal() +
+  labs(
+    title = "Linear Relationship Between RDMS Speed and Warning Time",
+    x = "Time Since First Warning (Seconds)",
+    y = "RDMS Speed"
+  )
+```
+**linear relationship between RDMS Speed and RDMS Warning Time, with points colored by Reason for RDMS Warning**
+---
+Enhanced R Code
+```
+library(readxl)
+library(ggplot2)
+library(lubridate)
+library(dplyr)
+
+# Load the data
+df <- read_excel("LMM DF.xlsx")
+
+# Convert warning time to POSIXct
+df$`Time stamp of warning` <- as.POSIXct(df$`Time stamp of warning`, format = "%Y-%m-%d %H:%M:%S", tz = "UTC")
+
+# Create numeric time variable: seconds since the first warning
+df <- df %>%
+  arrange(`Time stamp of warning`) %>%
+  mutate(
+    Time_Seconds = as.numeric(difftime(`Time stamp of warning`, min(`Time stamp of warning`), units = "secs")),
+    `Reason for RDMS warning` = as.factor(`Reason for RDMS warning`)
+  )
+
+# Plot: Speed vs. Time with color by Reason
+ggplot(df, aes(x = Time_Seconds, y = `RDMS Speed`, color = `Reason for RDMS warning`)) +
+  geom_point(alpha = 0.7) +
+  geom_smooth(method = "lm", se = FALSE, size = 1) +
+  theme_minimal() +
+  labs(
+    title = "RDMS Speed vs. Time Colored by warning Reason",
+    x = "Time Since First Warning (Seconds)",
+    y = "RDMS Speed",
+    color = "Warning Reason"
+  )
+```
 
 
