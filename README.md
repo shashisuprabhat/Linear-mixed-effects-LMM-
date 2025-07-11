@@ -244,5 +244,21 @@ ggplot(df, aes(x = Time_Seconds, y = `RDMS Speed`, color = `Reason for RDMS warn
     color = "Warning Reason"
   )
 ```
+**🔄 Optional: Facet by Driver ID**
+---
+```
+df$`Driver ID` <- as.factor(df$`Driver ID`)  # Convert if needed
+
+ggplot(df, aes(x = Time_Seconds, y = `RDMS Speed`, color = `Reason for RDMS Warning`)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = FALSE) +
+  facet_wrap(~ `Driver ID`) +
+  theme_minimal() +
+  labs(
+    title = "RDMS Speed vs. Time by Driver",
+    x = "Time Since First Warning (Seconds)",
+    y = "RDMS Speed"
+  )
+```
 
 
